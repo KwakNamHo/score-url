@@ -12,15 +12,15 @@ export async function GET() {
   }
 
   try {
-    // 2. DB 연결 및 기록 조회
+    // 2. DB 연결
     await dbConnect();
 
+    // 3. 내 기록만 찾아서 최신순 정렬
     const history = await ScanResultModel.find({ userId: userId })
-      .select('url score trustLevel scanDate')
+      .select('url score trustLevel scanDate') // 목록에 필요한 정보만 선택
       .sort({ scanDate: -1 })
-      .limit(50);
+      .limit(50); // 최대 50개 제한
 
-    // 3. 결과 반환
     return NextResponse.json(history);
   } catch (error: any) {
     console.error('History API Error:', error.message);

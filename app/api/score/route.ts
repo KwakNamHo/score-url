@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     const vtStats = await checkVirusTotal(normalizedUrl)
 
     // 5. 점수 계산
-    const scoreBase = calculateScore(gsbThreats, vtStats)
+    const scoreBase = calculateScore(gsbThreats, vtStats, normalizedUrl)
 
     const scanResult: ScanResult = {
       ...scoreBase,

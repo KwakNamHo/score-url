@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  experimental: {
+    optimizeCss: false, // lightningcss 완전 비활성화
+  },
 
-export default nextConfig;
+  webpack(config) {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      lightningcss: false, // lightningcss 모듈 import 차단
+    }
+
+    return config
+  },
+}
+
+export default nextConfig

@@ -1,15 +1,36 @@
-export default function HistoryPage() {
+'use client'
+
+import { useParams } from 'next/navigation'
+
+export default function DetailPage() {
+  const params = useParams()
+  const scanId = params.id
+
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 space-y-6">
-      <h1 className="text-2xl font-bold text-slate-800">분석 기록</h1>
+    <div className="max-w-4xl mx-auto py-10 space-y-6">
+      <h1 className="text-3xl font-bold text-slate-900">분석 상세 보고서</h1>
 
       <p className="text-slate-600 text-sm">
-        지금까지 분석한 URL 기록을 확인할 수 있는 페이지입니다. (백엔드/DB 연동
-        예정)
+        요청 ID: <span className="font-mono text-indigo-600">{scanId}</span>
       </p>
 
-      <div className="rounded-xl border border-slate-300 bg-white p-6 text-slate-600">
-        기록 데이터가 없습니다.
+      <div className="border border-slate-300 bg-white rounded-lg p-6 space-y-4">
+        <h2 className="text-xl font-semibold text-slate-800">
+          API 응답 원본 (추가 구현 필요)
+        </h2>
+        <p className="text-slate-600 text-sm">
+          현재는 더미 데이터가 표시됩니다. 추후 백엔드/DB 연동을 통해 실제
+          데이터를 가져와 표시할 예정입니다.
+        </p>
+
+        <div className="bg-black text-green-400 text-xs p-4 rounded overflow-x-auto font-mono">
+          {`{
+  "status": "warning",
+  "score": 75,
+  "gsb_matches": ["PHISHING_ATTEMPT"],
+  "vt_positives": 3
+}`}
+        </div>
       </div>
     </div>
   )

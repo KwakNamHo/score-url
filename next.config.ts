@@ -1,7 +1,16 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
-  // 특별한 설정 없음 (Next.js 기본값 사용)
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    optimizePackageImports: false,
+    optimizeCss: false, // lightningcss 완전 비활성화
+  },
+  compiler: {
+    cssModuleOptions: {
+      exportLocalsConvention: 'camelCase',
+    },
+  },
+  // Turbopack 대신 Webpack 강제
+  turbopack: false,
 }
 
 export default nextConfig
